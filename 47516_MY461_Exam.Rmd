@@ -1,0 +1,442 @@
+---
+title: "MY461 Take Home Exam"
+author: '47516'
+date: "4/24/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## General Set Up
+
+```{r}
+#setwd("~/Desktop/MY461/Exam")
+library(igraph)
+
+## Read in all files.
+exp_data <- read.csv("trade_exports_2018.csv", header = TRUE, as.is = TRUE)
+imp_data <- read.csv("trade_imports_2018.csv", header = TRUE, as.is = TRUE)
+meta <- read.csv("country_metadata.csv", header = TRUE, as.is = TRUE)
+
+
+## Fill the GDP per capita for countries with NA entries with the median.
+meta$GDP.per.capita[is.na(meta$GDP.per.capita)] <- median(meta$GDP.per.capita, na.rm = TRUE)
+
+
+## Create the networks.
+exp_net <- graph_from_data_frame(exp_data, directed=TRUE, vertices=meta)
+imp_net <- graph_from_data_frame(imp_data, directed=TRUE, vertices=meta)
+
+
+## Look at the summaries of the 2 networks
+summary(exp_net)
+summary(imp_net)
+```
+
+## Problem 1
+
+```{r}
+# Find out the average in-degree for both networks to generate the network models later
+mean(degree(exp_net, mode='in'))
+mean(degree(imp_net, mode='in'))
+```
+
+```{r}
+## Generate the Erdös-Rényi graph for export network and calculate the 4 measures
+g_er_exp <- lapply(rep(1, 100), function(x)
+  sample_gnm(n=211, m=603, directed = TRUE))
+g_er_den_exp <- sapply(g_er_exp, graph.density)
+g_er_apl_exp <- sapply(g_er_exp, average.path.length)
+g_er_acc_exp <- sapply(g_er_exp, transitivity)
+g_er_rec_exp <- sapply(g_er_exp, reciprocity)
+
+## Generate the Erdös-Rényi graph for import network and calculate the 4 measures
+g_er_imp <- lapply(rep(1, 100), function(x)
+  sample_gnm(n=211, m=614, directed = TRUE))
+g_er_den_imp <- sapply(g_er_imp, graph.density)
+g_er_apl_imp <- sapply(g_er_imp, average.path.length)
+g_er_acc_imp <- sapply(g_er_imp, transitivity)
+g_er_rec_imp <- sapply(g_er_imp, reciprocity)
+
+## Generate one Barabási-Albert graph for both export and import networks since the average
+## node in-degree for both networks are close to 3, then calculate the 4 measures
+g_ba <- lapply(rep(1, 100), function(x)
+  sample_pa(n=211, m=3, directed = TRUE, out.pref = FALSE))
+g_ba_den <- sapply(g_ba, graph.density)
+g_ba_apl <- sapply(g_ba, average.path.length)
+g_ba_acc <- sapply(g_ba, transitivity)
+g_ba_rec <- sapply(g_ba, reciprocity)
+
+## Create and print a table that summarizes the results
+res_table <- data.frame(c('Export Network', 'Import Network', 'Erdös-Rényi (export)',
+                          'Erdös-Rényi (import)', 'Barabási-Albert'), 
+                        c(graph.density(exp_net), graph.density(imp_net), mean(g_er_den_exp), 
+                          mean(g_er_den_imp), mean(g_ba_den)), 
+                        c(average.path.length(exp_net), average.path.length(imp_net), mean(g_er_apl_exp),
+                          mean(g_er_apl_imp), mean(g_ba_apl)),
+                        c(transitivity(exp_net), transitivity(imp_net), mean(g_er_acc_exp), 
+                          mean(g_er_acc_imp), mean(g_ba_acc)),
+                        c(reciprocity(exp_net), reciprocity(imp_net), mean(g_er_rec_exp), 
+                          mean(g_er_rec_imp), mean(g_ba_rec)))
+colnames(res_table) <- c('Network', 'Density', 'Average path length',
+                         'Transitivity', 'Reciprocity')
+res_table
+```
+
+```{r}
+## Get the indegrees of nodes
+ind1 <- degree(exp_net, mode='in')
+ind2 <- degree(imp_net, mode='in')
+
+## Get the indegree distributions
+prob_in1 <- degree.distribution(exp_net, mode='in')
+prob_in2 <- degree.distribution(imp_net, mode='in')
+
+## Remove indegrees with proportion=0.
+nonzero_pos_in1 <- which(prob_in1!=0) # this gives the index where prob!=0
+prob_in1 <- prob_in1[nonzero_pos_in1] # apply the index to the degree distr.
+nonzero_pos_in2 <- which(prob_in2!=0) 
+prob_in2 <- prob_in2[nonzero_pos_in2]
+
+## Create a vector including all non-zero-probability indegrees.
+## Make sure to start the index from 0 as we are including indegree / outdegree = 0.
+indegree1 <- 0:max(ind1)
+indegree1 <- indegree1[nonzero_pos_in1] 
+indegree2 <- 0:max(ind2)
+indegree2 <- indegree2[nonzero_pos_in2] 
+
+## Plot probability on the y-axis and degree on the x-axis
+par(mfrow=c(1,2))
+plot(prob_in1 ~ indegree1, xlab='Indegree d', ylab='Probability P(X=d)', col='blue', main='Export Network')
+plot(prob_in2 ~ indegree2, xlab='Indegree d', ylab='Probability P(X=d)', col='red', main='Import Network')
+```
+
+## Problem 2
+
+```{r}
+## Calculate the 2 chosen centrality measures.
+## Calculate indegree centrality for both import and export networks.
+indeg_exp <- degree(exp_net, mode='in')
+indeg_imp <- degree(imp_net, mode='in')
+
+## Calculate betweenness centrality for both import and export networks.
+## Set the weights to be the inverse of weight, as they are interpreted as distances.
+bet_exp <- betweenness(exp_net, directed = TRUE, weights = 1/E(exp_net)$PercentOfExports)
+bet_imp <- betweenness(imp_net, directed = TRUE, weights = 1/E(imp_net)$PercentOfImports)
+
+
+## Find out the countries with the highest centrality values
+cat("For export network:\n")
+cat(V(exp_net)$name[which(indeg_exp == max(indeg_exp))], "has the highest in-degree centrality of",
+    max(indeg_exp), "\n")
+cat(V(exp_net)$name[which(bet_exp == max(bet_exp))], "has the highest betweenness centrality of",
+    max(bet_exp), "\n")
+cat(V(exp_net)$name[which(indeg_exp == max(indeg_exp[indeg_exp != max(indeg_exp)]))], 
+    "has the second highest in-degree centrality of", 
+    max(indeg_exp[indeg_exp != max(indeg_exp)]), "\n")
+cat(V(exp_net)$name[which(bet_exp == max(bet_exp[bet_exp != max(bet_exp)]))], 
+    "has the second highest betweenness centrality of", 
+    max(bet_exp[bet_exp != max(bet_exp)]), "\n")
+
+cat("\nFor import network:\n")
+cat(V(imp_net)$name[which(indeg_imp == max(indeg_imp))], "has the highest in-degree centrality of",
+    max(indeg_imp), "\n")
+cat(V(imp_net)$name[which(bet_imp == max(bet_imp))], "has the highest betweenness centrality of",
+    max(bet_imp), "\n")
+cat(V(imp_net)$name[which(indeg_imp == max(indeg_imp[indeg_imp != max(indeg_imp)]))], 
+    "has the second highest in-degree centrality of", 
+    max(indeg_imp[indeg_imp != max(indeg_imp)]), "\n")
+cat(V(imp_net)$name[which(bet_imp == max(bet_imp[bet_imp != max(bet_imp)]))], 
+    "has the second highest betweenness centrality of", 
+    max(bet_imp[bet_imp != max(bet_imp)]), "\n")
+```
+
+```{r}
+## Make a dataframe so that can include table in the write-up section
+cen_table <- data.frame(c('United States', 'China'), 
+                        c(max(indeg_exp), max(indeg_exp[indeg_exp != max(indeg_exp)])), 
+                        c(max(bet_exp), max(bet_exp[bet_exp != max(bet_exp)])),
+                        c(max(indeg_imp[indeg_imp != max(indeg_imp)]), max(indeg_imp)),
+                        c(max(bet_imp[bet_imp != max(bet_imp)]), max(bet_imp)))
+colnames(cen_table) <- c('Country', 'Indegree (Exp)', 'Betweenness (Exp)',
+                         'Indegree (Imp)', 'Betweenness (Imp)')
+cen_table
+```
+
+```{r}
+## Make a dataframe to contain centrality values for export and import networks for reference.
+centrality_exp <- data.frame(indeg_exp, bet_exp)
+#centrality_exp
+
+centrality_imp <- data.frame(indeg_imp, bet_imp)
+#centrality_imp
+```
+
+```{r}
+## Calculate closeness centralities to utilize Ron Burt's concept
+clo_exp <- closeness(exp_net, mode='in', weights=1/E(exp_net)$PercentOfExports)
+clo_imp <- closeness(imp_net, mode='in', weights=1/E(imp_net)$PercentOfImports)
+
+cat("\nFor export network:\n")
+cat(V(exp_net)$name[which(clo_exp == max(clo_exp))], "has the highest closeness centrality of",
+    max(clo_exp), "\n")
+cat("\nFor import network:\n")
+cat(V(imp_net)$name[which(clo_imp == max(clo_imp))], "has the highest closeness centrality of",
+    max(clo_imp), "\n")
+```
+
+```{r}
+# Plot the 2 trade networks.
+library(scales)
+layout_kk_exp = layout.kamada.kawai(exp_net)
+layout_kk_imp = layout.kamada.kawai(imp_net)
+
+par(mfrow=c(2,2))
+plot.igraph(exp_net, vertex.label=NA, edge.arrow.size=0.2, 
+            vertex.size=rescale(indeg_exp, c(3,10)), layout=layout_kk_exp, main="Export Network (In-degree)")
+plot.igraph(imp_net, vertex.label=NA, edge.arrow.size=0.2, 
+            vertex.size=rescale(indeg_imp, c(3,10)), layout=layout_kk_imp, main="Import Network (In-degree)")
+plot.igraph(exp_net, vertex.label=NA, edge.arrow.size=0.2, 
+            vertex.size=rescale(bet_exp, c(3,10)), layout=layout_kk_exp, main="Export Network (Betweenness)")
+plot.igraph(imp_net, vertex.label=NA, edge.arrow.size=0.2, 
+            vertex.size=rescale(bet_imp, c(3,10)), layout=layout_kk_imp, main="Import Network (Betweenness)")
+```
+
+## Problem 3
+
+```{r}
+## Calculate assortativity by continent for both import and export networks.
+assort_exp <- assortativity.nominal(exp_net, factor(V(exp_net)$Continent))
+assort_imp <- assortativity.nominal(imp_net, factor(V(imp_net)$Continent))
+
+## Make a dataframe so that can include table in the write-up section.
+assort_table <- data.frame(c('Export Network', 'Import Network'), 
+                           c(assort_exp, assort_imp))
+colnames(assort_table) <- c('Network', 'Assortativity by Continent')
+assort_table
+```
+
+```{r}
+## Perform spinglass community detection algorithm on both import and export networks.
+## Set weights to NA to not use edge weight.
+sg_exp <- cluster_spinglass(exp_net, weights=NA)
+sg_imp <- cluster_spinglass(imp_net, weights=NA)
+
+sizes(sg_exp)
+sizes(sg_imp)
+
+## Compare the memberships with continent for both import and export networks.
+cat("\nComparison score for export network:", 
+    compare(as.factor(V(exp_net)$Continent), sg_exp, method = "nmi"), "\n")
+cat("Comparison score for import network:", 
+    compare(as.factor(V(imp_net)$Continent), sg_imp, method = "nmi"), "\n")
+
+## Use table to compare memberships with continent for both import and export networks.
+cat("\nComparison between Spinglass algorithm membership and continent for export network:\n")
+table(V(exp_net)$Continent, membership(sg_exp))
+cat("\nComparison between Spinglass algorithm membership and continent for import network:\n")
+table(V(imp_net)$Continent, membership(sg_imp))
+```
+
+```{r}
+## Define the layout for export network.
+frlay_exp <- layout_with_fr(exp_net)
+
+## Plot export network using spinglass. 
+## First, specify the color palette, as we have more than 8 groups.
+library("RColorBrewer")
+colors <- brewer.pal(n = max(membership(sg_exp)), name = 'Set1')
+plot(exp_net, vertex.label=NA, vertex.size=rescale(bet_exp, c(3,15)), 
+     edge.arrow.size=0.2, edge.width = rescale(E(exp_net)$PercentOfExports, c(0.5,2)),  
+     vertex.color=colors[membership(sg_exp)], layout = frlay_exp,
+     main = "Export Network - Spinglass")
+legend("topright",
+       legend=c(1:max(membership(sg_exp))),
+       pch=19,
+       col=colors)
+
+## Plot export network by continent.
+plot(exp_net, vertex.label=NA, vertex.size=rescale(bet_exp, c(3,15)), 
+     edge.arrow.size=0.2, edge.width = rescale(E(exp_net)$PercentOfExports, c(0.5,2)),  
+     vertex.color=as.factor(V(exp_net)$Continent), layout = frlay_exp,
+     main = "Export Network - By Continent")
+legend("topright",
+       legend=c("Africa","Asia","Europe","North America","Oceania","South America"),
+       pch=19,
+       col=categorical_pal(8)[c(1:6)])
+```
+
+```{r}
+## Define the layout for import network.
+frlay_imp <- layout_with_fr(imp_net)
+
+## Plot import network using spinglass. 
+## First, specify the color palette, as we have more than 8 groups.
+colors1 <- brewer.pal(n = max(membership(sg_imp)), name = 'Set1')
+plot(imp_net, vertex.label=NA, vertex.size=rescale(bet_imp, c(3,15)), 
+     edge.arrow.size=0.2, edge.width = rescale(E(imp_net)$PercentOfImports, c(0.5,2)),  
+     vertex.color=colors1[membership(sg_imp)], layout = frlay_imp,
+     main = "Import Network - Spinglass")
+legend("topright",
+       legend=c(1:max(membership(sg_imp))),
+       pch=19,
+       col=colors1)
+
+## Plot import network by continent.
+plot(imp_net, vertex.label=NA, vertex.size=rescale(bet_imp, c(3,15)), 
+     edge.arrow.size=0.2, edge.width = rescale(E(imp_net)$PercentOfImports, c(0.5,2)),  
+     vertex.color=as.factor(V(imp_net)$Continent), layout = frlay_imp,
+     main = "Import Network - By Continent")
+legend("topright",
+       legend=c("Africa","Asia","Europe","North America","Oceania","South America"),
+       pch=19,
+       col=categorical_pal(8)[c(1:6)])
+```
+
+```{r}
+## Calculate the probability of an import and export tie within and between each continent.
+require(intergraph)
+detach(package:igraph)
+require(sna)
+
+# Port both import and export networks into network objects readable by the sna package
+sna_exp_net <- asNetwork(exp_net)
+sna_imp_net <- asNetwork(imp_net)
+
+# Use the blockmodel function to assess the probability of ties within and between continents
+bm_exp_net <- blockmodel(sna_exp_net, ec = as.numeric(as.factor(sna_exp_net %v% "Continent")),
+                         rlabels = c("Africa","Asia","Europe","North America",
+                                     "Oceania","South America"), mode="digraph")
+bm_imp_net <- blockmodel(sna_imp_net, ec = as.numeric(as.factor(sna_imp_net %v% "Continent")),
+                         rlabels = c("Africa","Asia","Europe","North America",
+                                     "Oceania","South America"), mode="digraph")
+```
+
+```{r}
+cat("Probability of an export tie within and between each continent:\n")
+bm_exp_net$block.model 
+
+cat("\nProbability of an import tie within and between each continent:\n")
+bm_imp_net$block.model 
+```
+
+## Problem 4
+
+```{r}
+## Calculate structural equivalency
+struc_equiv <- equiv.clust(list(sna_imp_net, sna_exp_net), mode="digraph",
+                           plabels=sna_imp_net %v% "vertex.names")
+
+## Plot the dendrogram with countries as labels
+plot(struc_equiv, labels = sna_imp_net %v% "vertex.names", cex=0.2, 
+     main="Trade Networks Dendrogram")
+```
+
+```{r}
+## Divide the countries into 6 equivalency classes
+clus_6 <- cutree(struc_equiv$cluster, k = 6)
+clus_6
+```
+
+```{r}
+require(igraph)
+detach(package:sna)
+detach(package:intergraph)
+
+## Find out the countries in each cluster except cluster 1.
+V(exp_net)$name[which(clus_6 == 2)]
+V(exp_net)$name[which(clus_6 == 3)]
+V(exp_net)$name[which(clus_6 == 4)]
+V(exp_net)$name[which(clus_6 == 5)]
+V(exp_net)$name[which(clus_6 == 6)]
+```
+
+```{r}
+## Create a dataframe to include in report.
+equiv_table <- data.frame(c('1', '2', '3', '4', '5', '6'), 
+                          c("China", "United States", "Germany", "France, Italy", 
+                            "Japan, Netherlands, Russian Federation, Spain, United Kingdom", "All other countries"))
+colnames(equiv_table) <- c('Equivalency Class', 'Countries')
+equiv_table
+```
+
+```{r}
+## View the centralities of each country, sorted by their centrality scores.
+centrality_exp[order(-centrality_exp[,1], -centrality_exp[,2]),]
+centrality_imp[order(-centrality_imp[,1], -centrality_imp[,2]),]
+```
+
+## Problem 5
+
+```{r}
+detach(package:igraph)
+library(sna)
+library(network)
+library(ergm)
+
+#summary(sna_exp_net)
+
+## Get the log of gdp for the export network.
+sna_exp_net %v% "log_gdp" <- log(sna_exp_net %v% "GDP.per.capita")
+```
+
+```{r}
+## Create the ERGM model for export network and print the summary of results.
+model1 <- ergm(sna_exp_net ~ edges + nodeifactor("Continent") + nodematch("Continent") + nodeicov("log_gdp") + mutual) 
+
+summary(model1)
+```
+
+```{r}
+## Calculate the Odds Ratios and the 95% Confidence Intervals for these Odds Ratios.
+or <- exp(model1$coef)
+ste <- sqrt(diag(model1$covar)) 
+lci <- exp(model1$coef-1.96*ste) # the lower confidence intervals
+uci <- exp(model1$coef+1.96*ste) # the upper confidence intervals
+oddsratios <- cbind(round(lci, digits = 4), round(or,digits = 4), round(uci,digits = 4)) 
+colnames(oddsratios) <- c("Lower","OR","Upper")
+oddsratios
+```
+
+```{r}
+require(igraph)
+detach(package:sna)
+detach(package:ergm)
+detach(package:network)
+
+## Create a network from the adjacency matrix for import relations.
+imp_net_edge <- delete_edge_attr(imp_net, "PercentOfImports")
+imp_net_adj <- get.adjacency(imp_net_edge, sparse=FALSE)
+imp_net1 <- graph.adjacency(imp_net_adj)
+summary(imp_net1)
+```
+
+```{r}
+require(intergraph)
+detach(package:igraph)
+library(network)
+library(sna)
+library(ergm)
+
+## Port the igraph network to a network object readable by SNA package.
+sna_imp_net1 <- asNetwork(imp_net1)
+
+## Run a model including edgecov(sna_imp_net1).
+model2 <- ergm(sna_exp_net ~ edges + nodeifactor("Continent") + nodematch("Continent") + nodeicov("log_gdp") + edgecov(sna_imp_net1) + mutual)
+
+summary(model2)
+```
+
+```{r}
+## Calculate the Odds Ratios and the 95% Confidence Intervals for these Odds Ratios for the new model.
+or1 <- exp(model2$coef)
+ste1 <- sqrt(diag(model2$covar)) 
+lci1 <- exp(model2$coef-1.96*ste1) # the lower confidence intervals
+uci1 <- exp(model2$coef+1.96*ste1) # the upper confidence intervals
+oddsratios1 <- cbind(round(lci1, digits = 4), round(or1,digits = 4), round(uci1,digits = 4)) 
+colnames(oddsratios1) <- c("Lower","OR","Upper")
+oddsratios1
+```
+

@@ -1,0 +1,212 @@
+Country,ISO.alpha3.code,M49.code,Region.1,Region.2,Continent,GDP.per.capita
+Afghanistan,AFG,4,Southern Asia,Southern Asia,Asia,619
+Albania,ALB,8,Southern Europe,Southern Europe,Europe,4450
+Algeria,DZA,12,Northern Africa,Northern Africa,Africa,4055
+Andorra,AND,20,Southern Europe,Southern Europe,Europe,39153
+Angola,AGO,24,Middle Africa,Sub-Saharan Africa,Africa,4247
+Anguilla,AIA,660,Caribbean,Latin America and the Caribbean,North America,18861
+Antigua and Barbuda,ATG,28,Caribbean,Latin America and the Caribbean,North America,14803
+Argentina,ARG,32,South America,Latin America and the Caribbean,South America,14400
+Armenia,ARM,51,Western Asia,Western Asia,Asia,3937
+Aruba,ABW,533,Caribbean,Latin America and the Caribbean,North America,25655
+Australia,AUS,36,Australia and New Zealand,Australia and New Zealand,Oceania,57613
+Austria,AUT,40,Western Europe,Western Europe,Europe,47718
+Azerbaijan,AZE,31,Western Asia,Western Asia,Asia,4146
+Bahamas,BHS,44,Caribbean,Latin America and the Caribbean,North America,29825
+Bahrain,BHR,48,Western Asia,Western Asia,Asia,23668
+Bangladesh,BGD,50,Southern Asia,Southern Asia,Asia,1492
+Barbados,BRB,52,Caribbean,Latin America and the Caribbean,North America,16494
+Belarus,BLR,112,Eastern Europe,Eastern Europe,Europe,5750
+Belgium,BEL,56,Western Europe,Western Europe,Europe,43289
+Belize,BLZ,84,Central America,Latin America and the Caribbean,North America,5077
+Benin,BEN,204,Western Africa,Sub-Saharan Africa,Africa,826
+Bermuda,BMU,60,Northern America,Northern America,North America,102192
+Bhutan,BTN,64,Southern Asia,Southern Asia,Asia,3173
+Bolivia,BOL,68,South America,Latin America and the Caribbean,South America,3394
+Bosnia and Herzegovina,BIH,70,Southern Europe,Southern Europe,Europe,5181
+Botswana,BWA,72,Southern Africa,Sub-Saharan Africa,Africa,7596
+Brazil,BRA,76,South America,Latin America and the Caribbean,South America,9821
+British Virgin Islands,VGB,92,Caribbean,Latin America and the Caribbean,North America,31917
+Brunei Darussalam,BRN,96,South-eastern Asia,South-eastern Asia,Asia,28291
+Bulgaria,BGR,100,Eastern Europe,Eastern Europe,Europe,8218
+Burkina Faso,BFA,854,Western Africa,Sub-Saharan Africa,Africa,642
+Burundi,BDI,108,Eastern Africa,Sub-Saharan Africa,Africa,290
+Cabo Verde,CPV,132,Western Africa,Sub-Saharan Africa,Africa,3245
+Cambodia,KHM,116,South-eastern Asia,South-eastern Asia,Asia,1382
+Cameroon,CMR,120,Middle Africa,Sub-Saharan Africa,Africa,1452
+Canada,CAN,124,Northern America,Northern America,North America,44974
+Cayman Islands,CYM,136,Caribbean,Latin America and the Caribbean,North America,65472
+Central African Republic,CAF,140,Middle Africa,Sub-Saharan Africa,Africa,428
+Chad,TCD,148,Middle Africa,Sub-Saharan Africa,Africa,719
+Chile,CHL,152,South America,Latin America and the Caribbean,South America,15347
+China,CHN,156,Eastern Asia,Eastern Asia,Asia,8682
+"China, Hong Kong SAR",HKG,344,Eastern Asia,Eastern Asia,Asia,46390
+"China, Macao SAR",MAC,446,Eastern Asia,Eastern Asia,Asia,80893
+Colombia,COL,170,South America,Latin America and the Caribbean,South America,6302
+Comoros,COM,174,Eastern Africa,Sub-Saharan Africa,Africa,1330
+Congo,COG,178,Middle Africa,Sub-Saharan Africa,Africa,2147
+Cook Islands,COK,184,Polynesia,Polynesia,Oceania,17798
+Costa Rica,CRI,188,Central America,Latin America and the Caribbean,North America,11734
+Côte d'Ivoire,CIV,384,Western Africa,Sub-Saharan Africa,Africa,1566
+Croatia,HRV,191,Southern Europe,Southern Europe,Europe,13177
+Cuba,CUB,192,Caribbean,Latin America and the Caribbean,North America,8433
+Cyprus,CYP,196,Western Asia,Western Asia,Asia,25790
+Czechia,CZE,203,Eastern Europe,Eastern Europe,Europe,20326
+Dem. People's Rep. Korea,PRK,408,Eastern Asia,Eastern Asia,Asia,685
+Dem. Rep. of the Congo,COD,180,Middle Africa,Sub-Saharan Africa,Africa,463
+Denmark,DNK,208,Northern Europe,Northern Europe,Europe,57533
+Djibouti,DJI,262,Eastern Africa,Sub-Saharan Africa,Africa,1928
+Dominica,DMA,212,Caribbean,Latin America and the Caribbean,North America,6719
+Dominican Rep.,DOM,214,Caribbean,Latin America and the Caribbean,North America,7052
+Ecuador,ECU,218,South America,Latin America and the Caribbean,South America,6273
+Egypt,EGY,818,Northern Africa,Northern Africa,Africa,2000
+El Salvador,SLV,222,Central America,Latin America and the Caribbean,North America,3889
+Equatorial Guinea,GNQ,226,Middle Africa,Sub-Saharan Africa,Africa,9850
+Eritrea,ERI,232,Eastern Africa,Sub-Saharan Africa,Africa,1147
+Estonia,EST,233,Northern Europe,Northern Europe,Europe,19793
+Eswatini,SWZ,748,Southern Africa,Sub-Saharan Africa,Africa,3224
+Ethiopia,ETH,231,Eastern Africa,Sub-Saharan Africa,Africa,720
+Falkland Islands (Malvinas),FLK,238,South America,Latin America and the Caribbean,South America,NA
+Faroe Islands,FRO,234,Northern Europe,Northern Europe,Europe,NA
+Fiji,FJI,242,Melanesia,Melanesia,Oceania,5382
+Finland,FIN,246,Northern Europe,Northern Europe,Europe,45670
+France,FRA,250,Western Europe,Western Europe,Europe,38415
+French Polynesia,PYF,258,Polynesia,Polynesia,Oceania,19807
+Gabon,GAB,266,Middle Africa,Sub-Saharan Africa,Africa,7221
+Gambia,GMB,270,Western Africa,Sub-Saharan Africa,Africa,709
+Georgia,GEO,268,Western Asia,Western Asia,Asia,3875
+Germany,DEU,276,Western Europe,Western Europe,Europe,44976
+Ghana,GHA,288,Western Africa,Sub-Saharan Africa,Africa,2046
+Gibraltar,GIB,292,Southern Europe,Southern Europe,Europe,NA
+Greece,GRC,300,Southern Europe,Southern Europe,Europe,18198
+Greenland,GRL,304,Northern America,Northern America,North America,49398
+Grenada,GRD,308,Caribbean,Latin America and the Caribbean,North America,10451
+Guatemala,GTM,320,Central America,Latin America and the Caribbean,North America,4471
+Guinea,GIN,324,Western Africa,Sub-Saharan Africa,Africa,803
+Guinea-Bissau,GNB,624,Western Africa,Sub-Saharan Africa,Africa,724
+Guyana,GUY,328,South America,Latin America and the Caribbean,South America,4555
+Haiti,HTI,332,Caribbean,Latin America and the Caribbean,North America,776
+Honduras,HND,340,Central America,Latin America and the Caribbean,North America,2480
+Hungary,HUN,348,Eastern Europe,Eastern Europe,Europe,14376
+Iceland,ISL,352,Northern Europe,Northern Europe,Europe,73060
+India,IND,356,Southern Asia,Southern Asia,Asia,1923
+Indonesia,IDN,360,South-eastern Asia,South-eastern Asia,Asia,3847
+Iran (Islamic Rep.),IRN,364,Southern Asia,Southern Asia,Asia,5680
+Iraq,IRQ,368,Western Asia,Western Asia,Asia,4756
+Ireland,IRL,372,Northern Europe,Northern Europe,Europe,69604
+Israel,ISR,376,Western Asia,Western Asia,Asia,42452
+Italy,ITA,380,Southern Europe,Southern Europe,Europe,32747
+Jamaica,JAM,388,Caribbean,Latin America and the Caribbean,North America,5130
+Japan,JPN,392,Eastern Asia,Eastern Asia,Asia,38220
+Jordan,JOR,400,Western Asia,Western Asia,Asia,4196
+Kazakhstan,KAZ,398,Central Asia,Central Asia,Asia,8756
+Kenya,KEN,404,Eastern Africa,Sub-Saharan Africa,Africa,1508
+Kiribati,KIR,296,Micronesia,Micronesia,Oceania,1694
+Kuwait,KWT,414,Western Asia,Western Asia,Asia,28897
+Kyrgyzstan,KGZ,417,Central Asia,Central Asia,Asia,1251
+Lao People's Dem. Rep.,LAO,418,South-eastern Asia,South-eastern Asia,Asia,2457
+Latvia,LVA,428,Northern Europe,Northern Europe,Europe,15625
+Lebanon,LBN,422,Western Asia,Western Asia,Asia,8778
+Lesotho,LSO,426,Southern Africa,Sub-Saharan Africa,Africa,1178
+Liberia,LBR,430,Western Africa,Sub-Saharan Africa,Africa,584
+Libya,LBY,434,Northern Africa,Northern Africa,Africa,3942
+Lithuania,LTU,440,Northern Europe,Northern Europe,Europe,16450
+Luxembourg,LUX,442,Western Europe,Western Europe,Europe,106806
+Madagascar,MDG,450,Eastern Africa,Sub-Saharan Africa,Africa,517
+Malawi,MWI,454,Eastern Africa,Sub-Saharan Africa,Africa,340
+Malaysia,MYS,458,South-eastern Asia,South-eastern Asia,Asia,9951
+Maldives,MDV,462,Southern Asia,Southern Asia,Asia,11151
+Mali,MLI,466,Western Africa,Sub-Saharan Africa,Africa,822
+Malta,MLT,470,Southern Europe,Southern Europe,Europe,29137
+Marshall Islands,MHL,584,Micronesia,Micronesia,Oceania,3753
+Mauritania,MRT,478,Western Africa,Sub-Saharan Africa,Africa,1129
+Mauritius,MUS,480,Eastern Africa,Sub-Saharan Africa,Africa,10565
+Mexico,MEX,484,Central America,Latin America and the Caribbean,North America,8967
+Micronesia (Fed. States of),FSM,583,Micronesia,Micronesia,Oceania,3188
+Mongolia,MNG,496,Eastern Asia,Eastern Asia,Asia,3620
+Montenegro,MNE,499,Southern Europe,Southern Europe,Europe,7703
+Montserrat,MSR,500,Caribbean,Latin America and the Caribbean,North America,11582
+Morocco,MAR,504,Northern Africa,Northern Africa,Africa,3070
+Mozambique,MOZ,508,Eastern Africa,Sub-Saharan Africa,Africa,426
+Myanmar,MMR,104,South-eastern Asia,South-eastern Asia,Asia,1257
+Namibia,NAM,516,Southern Africa,Sub-Saharan Africa,Africa,5227
+Nepal,NPL,524,Southern Asia,Southern Asia,Asia,849
+Netherlands,NLD,528,Western Europe,Western Europe,Europe,48754
+New Caledonia,NCL,540,Melanesia,Melanesia,Oceania,35815
+New Zealand,NZL,554,Australia and New Zealand,Australia and New Zealand,Oceania,42935
+Nicaragua,NIC,558,Central America,Latin America and the Caribbean,North America,2222
+Niger,NER,562,Western Africa,Sub-Saharan Africa,Africa,378
+Nigeria,NGA,566,Western Africa,Sub-Saharan Africa,Africa,1969
+North Macedonia,MKD,807,Southern Europe,Southern Europe,Europe,5415
+Northern Mariana Islands,MNP,580,Micronesia,Micronesia,Oceania,NA
+Norway,NOR,578,Northern Europe,Northern Europe,Europe,75295
+Oman,OMN,512,Western Asia,Western Asia,Asia,15267
+Pakistan,PAK,586,Southern Asia,Southern Asia,Asia,1534
+Palau,PLW,585,Micronesia,Micronesia,Oceania,13417
+Panama,PAN,591,Central America,Latin America and the Caribbean,North America,15088
+Papua New Guinea,PNG,598,Melanesia,Melanesia,Oceania,2667
+Paraguay,PRY,600,South America,Latin America and the Caribbean,South America,4322
+Peru,PER,604,South America,Latin America and the Caribbean,South America,6572
+Philippines,PHL,608,South-eastern Asia,South-eastern Asia,Asia,2989
+Poland,POL,616,Eastern Europe,Eastern Europe,Europe,13786
+Portugal,PRT,620,Southern Europe,Southern Europe,Europe,18882
+Qatar,QAT,634,Western Asia,Western Asia,Asia,63506
+Rep. of Korea,KOR,410,Eastern Asia,Eastern Asia,Asia,30025
+Republic of Moldova,MDA,498,Eastern Europe,Eastern Europe,Europe,2006
+Romania,ROU,642,Eastern Europe,Eastern Europe,Europe,10763
+Russian Federation,RUS,643,Eastern Europe,Eastern Europe,Europe,10956
+Rwanda,RWA,646,Eastern Africa,Sub-Saharan Africa,Africa,748
+Saint Helena,SHN,654,Western Africa,Sub-Saharan Africa,Africa,NA
+Saint Kitts and Nevis,KNA,659,Caribbean,Latin America and the Caribbean,North America,16818
+Saint Lucia,LCA,662,Caribbean,Latin America and the Caribbean,North America,9607
+Saint Pierre and Miquelon,SPM,666,Northern America,Northern America,North America,NA
+Saint Vincent & Grenadines,VCT,670,Caribbean,Latin America and the Caribbean,North America,7099
+Samoa,WSM,882,Polynesia,Polynesia,Oceania,4356
+Sao Tome and Principe,STP,678,Middle Africa,Sub-Saharan Africa,Africa,1921
+Saudi Arabia,SAU,682,Western Asia,Western Asia,Asia,20761
+Senegal,SEN,686,Western Africa,Sub-Saharan Africa,Africa,1333
+Serbia,SRB,688,Southern Europe,Southern Europe,Europe,5912
+Seychelles,SYC,690,Eastern Africa,Sub-Saharan Africa,Africa,15693
+Sierra Leone,SLE,694,Western Africa,Sub-Saharan Africa,Africa,495
+Singapore,SGP,702,South-eastern Asia,South-eastern Asia,Asia,56737
+Slovakia,SVK,703,Eastern Europe,Eastern Europe,Europe,17552
+Slovenia,SVN,705,Southern Europe,Southern Europe,Europe,23296
+Solomon Islands,SLB,90,Melanesia,Melanesia,Oceania,1982
+Somalia,SOM,706,Eastern Africa,Sub-Saharan Africa,Africa,104
+South Africa,ZAF,710,Southern Africa,Sub-Saharan Africa,Africa,6151
+South Sudan,SSD,728,Eastern Africa,Sub-Saharan Africa,Africa,453
+Spain,ESP,724,Southern Europe,Southern Europe,Europe,28354
+Sri Lanka,LKA,144,Southern Asia,Southern Asia,Asia,4184
+State of Palestine,PSE,275,Western Asia,Western Asia,Asia,2946
+Sudan,SDN,729,Northern Africa,Northern Africa,Africa,2967
+Suriname,SUR,740,South America,Latin America and the Caribbean,South America,6757
+Sweden,SWE,752,Northern Europe,Northern Europe,Europe,54043
+Switzerland,CHE,756,Western Europe,Western Europe,Europe,80101
+Syrian Arab Rep.,SYR,760,Western Asia,Western Asia,Asia,831
+Tajikistan,TJK,762,Central Asia,Central Asia,Asia,801
+Thailand,THA,764,South-eastern Asia,South-eastern Asia,Asia,6595
+Timor-Leste,TLS,626,South-eastern Asia,South-eastern Asia,Asia,2279
+Togo,TGO,768,Western Africa,Sub-Saharan Africa,Africa,614
+Tokelau,TKL,772,Polynesia,Polynesia,Oceania,NA
+Tonga,TON,776,Polynesia,Polynesia,Oceania,3950
+Trinidad and Tobago,TTO,780,Caribbean,Latin America and the Caribbean,North America,16145
+Tunisia,TUN,788,Northern Africa,Northern Africa,Africa,3475
+Turkey,TUR,792,Western Asia,Western Asia,Asia,10546
+Turkmenistan,TKM,795,Central Asia,Central Asia,Asia,6585
+Turks and Caicos Islands,TCA,796,Caribbean,Latin America and the Caribbean,North America,28689
+Tuvalu,TUV,798,Polynesia,Polynesia,Oceania,3924
+Uganda,UGA,800,Eastern Africa,Sub-Saharan Africa,Africa,646
+Ukraine,UKR,804,Eastern Europe,Eastern Europe,Europe,2536
+United Arab Emirates,ARE,784,Western Asia,Western Asia,Asia,40699
+United Kingdom,GBR,826,Northern Europe,Northern Europe,Europe,39758
+United Rep. of Tanzania,TZA,834,Eastern Africa,Sub-Saharan Africa,Africa,934
+United States,USA,840,Northern America,Northern America,North America,60055
+Uruguay,URY,858,South America,Latin America and the Caribbean,South America,17120
+Uzbekistan,UZB,860,Central Asia,Central Asia,Asia,1557
+Vanuatu,VUT,548,Melanesia,Melanesia,Oceania,3128
+Venezuela (Boliv. Rep. of),VEN,862,South America,Latin America and the Caribbean,South America,7977
+Viet Nam,VNM,704,South-eastern Asia,South-eastern Asia,Asia,2342
+Wallis and Futuna Islands,WLF,876,Polynesia,Polynesia,Oceania,NA
+Yemen,YEM,887,Western Asia,Western Asia,Asia,990
+Zambia,ZMB,894,Eastern Africa,Sub-Saharan Africa,Africa,1513
+Zimbabwe,ZWE,716,Eastern Africa,Sub-Saharan Africa,Africa,1091
